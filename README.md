@@ -10,7 +10,6 @@ Architecture portfolio website for MM&HouseDesigns.
 - Project gallery with full-image project viewer
 - Contact page with clickable phone and email links
 - Automatic GitHub Pages deployment from the `main` branch
-- Custom domain configuration for `mmhousedesigns.ge`
 
 ## Local Development
 
@@ -32,5 +31,5 @@ The production output is generated in `dist`.
 Push changes to `main`. The workflow in `.github/workflows/deploy.yml` builds
 the site and publishes `dist` to GitHub Pages automatically.
 
-The production site uses `https://mmhousedesigns.ge` once its DNS records point
-to GitHub Pages and GitHub has issued the HTTPS certificate.
+The production site is available at
+`https://macharstein.github.io/mmhousedesigns/`.
