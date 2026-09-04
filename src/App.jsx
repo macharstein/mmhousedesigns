@@ -5,6 +5,7 @@ const defaultLanguage = 'ka';
 const contactEmail = 'mmhousedesigns@gmail.com';
 const contactPhone = '+995 599 196 259';
 const contactPhoneHref = 'tel:+995599196259';
+const assetBase = `${import.meta.env.BASE_URL}assets`;
 
 const languages = [
   { code: 'ka', flag: '🇬🇪', label: 'ქართული' },
@@ -13,9 +14,9 @@ const languages = [
 ];
 
 const heroImages = [
-  '/assets/project-exterior.jpg',
-  '/assets/hero-secondary.jpg',
-  '/assets/hero-tertiary.jpg',
+  `${assetBase}/project-exterior.jpg`,
+  `${assetBase}/hero-secondary.jpg`,
+  `${assetBase}/hero-tertiary.jpg`,
 ];
 
 const translations = {
@@ -276,7 +277,7 @@ function buildProjects(copy) {
     return {
       title,
       category: projectType.category,
-      image: `/assets/projects/${file}`,
+      image: `${assetBase}/projects/${file}`,
       description: projectType.description(title),
     };
   });
