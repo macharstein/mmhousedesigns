@@ -9,7 +9,8 @@ Architecture portfolio website for MM&HouseDesigns.
 - Home hero image carousel
 - Project gallery with full-image project viewer
 - Contact page with clickable phone and email links
-- Firebase Hosting configuration
+- Automatic GitHub Pages deployment from the `main` branch
+- Custom domain configuration for `mmhousedesigns.ge`
 
 ## Local Development
 
@@ -26,24 +27,10 @@ npm run build
 
 The production output is generated in `dist`.
 
-## Firebase Deploy
+## Deployment
 
-Log in once:
+Push changes to `main`. The workflow in `.github/workflows/deploy.yml` builds
+the site and publishes `dist` to GitHub Pages automatically.
 
-```bash
-npm run firebase:login
-```
-
-Initialize/select the Firebase project once:
-
-```bash
-npx firebase-tools init hosting
-```
-
-Use `dist` as the public directory, configure it as a single-page app, and do not overwrite `dist/index.html`.
-
-Deploy updates:
-
-```bash
-npm run firebase:deploy
-```
+The production site uses `https://mmhousedesigns.ge` once its DNS records point
+to GitHub Pages and GitHub has issued the HTTPS certificate.
