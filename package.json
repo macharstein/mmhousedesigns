@@ -6,9 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:firebase": "vite build --base=/",
     "preview": "vite preview",
     "firebase:login": "npx firebase-tools login",
-    "firebase:deploy": "npm run build && npx firebase-tools deploy --only hosting"
+    "firebase:deploy": "npm run build:firebase && npx firebase-tools deploy --only hosting"
   },
   "dependencies": {
     "react": "^18.3.1",
