@@ -74,6 +74,7 @@ const translations = {
     projectImageAlt: (title) => `${title} არქიტექტურული რენდერი`,
     projectFullImageAlt: (title) => `${title} სრული არქიტექტურული რენდერი`,
     closeProjectLabel: 'პროექტის სურათის დახურვა',
+    closeContactLabel: 'საკონტაქტო ინფორმაციის დახურვა',
     contactPage: {
       eyebrow: 'დაგვიკავშირდით',
       title: 'კონტაქტი',
@@ -137,6 +138,7 @@ const translations = {
     projectImageAlt: (title) => `${title} architecture render`,
     projectFullImageAlt: (title) => `${title} full architecture render`,
     closeProjectLabel: 'Close project image',
+    closeContactLabel: 'Close contact information',
     contactPage: {
       eyebrow: 'Start a conversation',
       title: 'Contact me',
@@ -200,6 +202,7 @@ const translations = {
     projectImageAlt: (title) => `${title}: архитектурный рендер`,
     projectFullImageAlt: (title) => `${title}: полный архитектурный рендер`,
     closeProjectLabel: 'Закрыть изображение проекта',
+    closeContactLabel: 'Закрыть контактную информацию',
     contactPage: {
       eyebrow: 'Связаться',
       title: 'Контакты',
@@ -267,6 +270,14 @@ function getInitialLanguage() {
 function getInitialPage() {
   const hash = window.location.hash.replace('#', '');
   return navItems.some((item) => item.id === hash) ? hash : 'home';
+}
+
+function shouldShowContactPopup() {
+  try {
+    return window.sessionStorage.getItem('contact-popup-dismissed') !== 'true';
+  } catch {
+    return true;
+  }
 }
 
 function buildProjects(copy) {
@@ -494,10 +505,54 @@ function ContactPage({ copy }) {
   );
 }
 
+function ContactPopup({ copy, onClose }) {
+  return (
+    <aside
+      aria-labelledby="contact-popup-title"
+      aria-modal="false"
+      className="contact-popup"
+      role="dialog"
+    >
+      <button
+        aria-label={copy.closeContactLabel}
+        className="contact-popup-close"
+        onClick={onClose}
+        title={copy.closeContactLabel}
+        type="button"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <p className="eyebrow">{copy.contactPage.eyebrow}</p>
+      <h2 id="contact-popup-title">{copy.contactPage.title}</h2>
+      <div className="contact-popup-details">
+        <p>
+          <span>{copy.contactPage.phoneLabel}</span>
+          <a href={contactPhoneHref}>{contactPhone}</a>
+        </p>
+        <p>
+          <span>{copy.contactPage.emailLabel}</span>
+          <a href={`mailto:${contactEmail}`}>{contactEmail}</a>
+        </p>
+      </div>
+    </aside>
+  );
+}
+
 function App() {
   const [activePage, setActivePage] = useState(getInitialPage);
   const [language, setLanguage] = useState(getInitialLanguage);
+  const [showContactPopup, setShowContactPopup] = useState(shouldShowContactPopup);
   const copy = translations[language] ?? translations[defaultLanguage];
+
+  function closeContactPopup() {
+    setShowContactPopup(false);
+
+    try {
+      window.sessionStorage.setItem('contact-popup-dismissed', 'true');
+    } catch {
+      // The popup can still close when browser storage is unavailable.
+    }
+  }
 
   useEffect(() => {
     function handleHashChange() {
@@ -544,6 +599,7 @@ function App() {
         onLanguageChange={setLanguage}
       />
       {page}
+      {showContactPopup && <ContactPopup copy={copy} onClose={closeContactPopup} />}
     </div>
   );
 }

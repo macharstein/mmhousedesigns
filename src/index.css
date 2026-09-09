@@ -471,6 +471,102 @@ img {
   color: rgba(255, 255, 255, 0.72);
 }
 
+.contact-popup {
+  position: fixed;
+  top: calc(var(--header-height) + 1rem);
+  right: var(--page-x);
+  z-index: 20;
+  width: min(22rem, calc(100vw - (2 * var(--page-x))));
+  padding: 1.35rem 3.5rem 1.35rem 1.35rem;
+  border: 0.0625rem solid rgba(255, 255, 255, 0.42);
+  border-radius: 0.375rem;
+  color: rgba(255, 255, 255, 0.88);
+  background: rgba(2, 2, 2, 0.94);
+  box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.32);
+  backdrop-filter: blur(14px);
+  animation: contact-popup-in 240ms ease-out both;
+}
+
+.contact-popup .eyebrow {
+  margin-bottom: 0.4rem;
+}
+
+.contact-popup h2 {
+  margin: 0 0 1.1rem;
+  color: #ffffff;
+  font-family: var(--title-font);
+  font-size: 1.55rem;
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.contact-popup-details p {
+  display: grid;
+  gap: 0.2rem;
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: 1.45;
+}
+
+.contact-popup-details p + p {
+  margin-top: 0.75rem;
+}
+
+.contact-popup-details span {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.contact-popup-details a {
+  color: #ffffff;
+  overflow-wrap: anywhere;
+}
+
+.contact-popup-details a:hover,
+.contact-popup-details a:focus-visible {
+  text-decoration: underline;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+}
+
+.contact-popup-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.78);
+  background: transparent;
+  font-size: 1.55rem;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.contact-popup-close:hover,
+.contact-popup-close:focus-visible {
+  color: #020202;
+  background: #ffffff;
+  outline: none;
+}
+
+@keyframes contact-popup-in {
+  from {
+    opacity: 0;
+    transform: translateY(-0.5rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -554,6 +650,12 @@ img {
 
   .language-switcher {
     justify-content: flex-start;
+  }
+
+  .contact-popup {
+    top: 10.5rem;
+    right: 1rem;
+    width: calc(100vw - 2rem);
   }
 
   .hero {
