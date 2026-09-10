@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { trackPageView } from './analytics';
 
 const brand = 'MM&HouseDesigns';
 const defaultLanguage = 'ka';
@@ -579,6 +580,10 @@ function App() {
       // Ignore storage failures; the Georgian default still applies.
     }
   }, [copy, language]);
+
+  useEffect(() => {
+    trackPageView();
+  }, [activePage]);
 
   let page = <HomePage copy={copy} />;
 
