@@ -48,8 +48,8 @@ One-time setup:
 2. Enable the Google Analytics Data API in the project's Google Cloud console.
 3. Create a service account, add its email to the Analytics property as a
    Viewer, and download its JSON key outside this repository.
-4. Copy `.env.example` to `.env` and enter the Measurement ID, numeric Property
-   ID, and absolute JSON key path.
+4. Copy `.env.example` to `.env` and enter the numeric Property ID and absolute
+   JSON key path. The website Measurement ID is already configured in code.
 5. Deploy once with `npm run firebase:deploy` to activate page-view tracking.
 
 Show visitors from the last 30 days:

@@ -1,4 +1,5 @@
-const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID?.trim();
+const defaultMeasurementId = 'G-BBTLR86TJB';
+const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID?.trim() || defaultMeasurementId;
 
 let initialized = false;
 
